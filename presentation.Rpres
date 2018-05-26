@@ -80,14 +80,6 @@ Github Repository: https://www.github.com/metrumresearchgroup/sinew
 
 Gitbook: https://metrumresearchgroup.github.io/sinew/
 
-```r
-# CRAN
-install.packages('sinew')
-
-# Github
-remotes::install_github('www.github.com/metrumresearchgroup/sinew')
-```
-
 Package Goal
 ========================================================
 
@@ -107,5 +99,6 @@ Time permitting we will see the interactive shiny gadget of `{sinew}`
 Moving to Rmd.... 
 
 ```r
-rstudioapi::navigateToFile('sinew_example.Rmd') 
+library(rstudioapi)
+navigateToFile('sinew_example_notebook.Rmd') 
 ```
