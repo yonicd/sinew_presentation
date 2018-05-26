@@ -1,0 +1,186 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Setting global options for chunks and knitr
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load packages needed
+
+```{r}
+
+library(devtools)
+library(sinew)
+
+```
+ 
+Initialize a new package 
+ 
+```{r}
+
+devtools::create('test')
+knitr::opts_knit$set(root.dir = 'test')
+```
+ 
+Add some basics: Package License and `data_raw` subdirectory 
+ 
+```{r}
+
+devtools::use_mit_license('test')
+devtools::use_data_raw('test')
+
+```
+
+Write the toy functions to `data_raw/test.R`
+
+```{r}
+ 
+cat('#some comment
+yy <- function(a=4){
+  head(runif(10),a)
+  # a comment
+}
+
+zz <- function(v=10,a=8){
+  head(runif(v),a)
+}
+
+yy(6)
+
+zz(30,3)',sep='\n',file='test/data-raw/test.R') 
+
+```
+
+What does the RStudio skeleton look like? 
+
+`Shift+Alt+Cmd+R` (macOS)
+
+```{r RStudio skeleton, eval=FALSE}
+
+#' Title
+#'
+#' @param a 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+yy <- function(a=4){
+  head(runif(10),a)
+  # a comment
+}
+
+```
+
+Split the `tests/data-raw/test.R` into single R files in the `test/R` subdirectory
+
+```{r}
+sinew::untangle(file = 'test/data-raw/test.R',dir.out = 'test/R',keep.body = FALSE)
+```
+ 
+Append the appropriate namespaces to the functions 
+ 
+```{r}
+
+sinew::pretty_namespace('test/R')
+
+sinew::pretty_namespace('test/R',overwrite = TRUE)
+
+```
+
+Create sinew roxygen2 skeletons populated with information from within the functions. 
+
+And replace the placeholders with information.
+
+```{r}
+
+sinew::makeOxyFile(input = 'test/R/yy.R',overwrite = FALSE)
+
+file.remove('test/R/oxy-yy.R')
+
+sinew::makeOxyFile(input = 'test/R',overwrite = TRUE)
+
+```
+
+Append to the `DESCRIPTION` file the the `imports` field
+
+```{r DESCRIPTION}
+
+sinew::makeImport('test/R',format = 'description',desc_loc = 'test')
+
+rstudioapi::navigateToFile('test/DESCRIPTION')
+
+```
+
+Looking back `yy` should have a summary function
+
+```{r, eval=FALSE}
+
+yy <- function(a=4,b=2){
+  
+  x <- utils::head(stats::runif(10*b),a)
+  
+  stats::quantile(x,probs=.95)
+  
+  # a comment
+}
+
+```
+
+Now the roxygen2 header is not in synch with the function. Use `sinew::moga` to update the roxygen2 header with new formals and import fields. Make Oxygen Great Again (moga)
+
+```{r MOGA}
+
+sinew::moga(path = 'test/R/yy.r',overwrite = FALSE)
+
+sinew::moga(path = 'test/R/yy.r',overwrite = FALSE,force.fields = 'seealso')
+
+sinew::moga(path = 'test/R/yy.r',overwrite = TRUE,force.fields = 'seealso')
+
+```
+
+Compile the roxygen2 headers into Rd files in `man` and update the `NAMESPACE` file
+
+```{r OXYGENIZE}
+
+devtools::document(pkg = 'test')
+
+```
+
+Run `R CMD check --as-cran`
+
+```{r CHECK}
+
+devtools::check(pkg = 'test',cran = TRUE)
+
+```
+
+Install the package, look at the documentation and run the functions.
+
+```{r test functions}
+
+devtools::install('test')
+
+library(test)
+
+?test::yy
+
+?test::zz
+
+test::yy()
+
+test::zz()
+
+```
+
+Interactive sinew
+
+```{r interactive}
+
+rstudioapi::navigateToFile('test/R/yy.R')
+
+```
