@@ -1,7 +1,7 @@
 Simple and Reliable R Package Documentation with Sinew
 ========================================================
 author: Jonathan Sidi
-date: 2018-05-25
+date: 2018-05-26
 autosize: true
 
 Whoami
@@ -97,8 +97,3 @@ In the following example we will create a fully functional package with valid na
 Time permitting we will see the interactive shiny gadget of `{sinew}`
 
 Moving to Rmd.... 
-
-```r
-library(rstudioapi)
-navigateToFile('sinew_example_notebook.Rmd') 
-```
