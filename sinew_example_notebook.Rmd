@@ -43,7 +43,11 @@ Write the toy functions to `data_raw/test.R`
 
 ```{r}
  
-cat('#some comment
+cat('xx <- function(data){
+    mutate(data,mpg2 = mpg^2)
+}
+
+#some comment
 yy <- function(a=4){
   head(runif(10),a)
   # a comment
@@ -55,7 +59,10 @@ zz <- function(v=10,a=8){
 
 yy(6)
 
-zz(30,3)',sep='\n',file='test/data-raw/test.R') 
+zz(30,3)
+
+xx()
+',sep='\n',file='test/data-raw/test.R') 
 
 ```
 
@@ -90,9 +97,9 @@ Append the appropriate namespaces to the functions
  
 ```{r}
 
-sinew::pretty_namespace('test/R')
+sinew::pretty_namespace(con = 'test/R/xx.R')
 
-sinew::pretty_namespace('test/R',overwrite = TRUE)
+sinew::pretty_namespace(con = 'test/R',overwrite = TRUE)
 
 ```
 
@@ -163,6 +170,29 @@ devtools::check(pkg = 'test',cran = TRUE)
 
 ```
 
+A problem that ussually arises when checking pacakges that use tidyverse is 'undefined global functions'. To resolve this issue you need to use {rlang} functions. 
+
+To make this an easy process we use {tidycheckUsage} which creates a tidy output of the portion of the R CMD check output that checks for the global variables, and lets you append the correct rlang functions to solve this issue. 
+
+```{r}
+library(tidycheckUsage)
+tidycheckUsagePackage('test')
+
+append_rlang_package('test')
+
+rstudioapi::navigateToFile('test/R/xx.R')
+
+# refresh the documentation
+sinew::moga('test/R/xx.R',overwrite = TRUE)
+sinew::makeImport(script = 'test/R',format = 'description',desc_loc = 'test')
+
+devtools::document('test')
+
+# recheck the package
+devtools::check('test')
+
+```
+
 Install the package, look at the documentation and run the functions.
 
 ```{r test functions}
@@ -171,9 +201,13 @@ devtools::install('test')
 
 library(test)
 
+?test::xx
+
 ?test::yy
 
 ?test::zz
+
+test::xx(mtcars)
 
 test::yy()
 

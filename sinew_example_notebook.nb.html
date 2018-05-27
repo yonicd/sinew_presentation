@@ -1702,20 +1702,17 @@ $(document).ready(function () {
 <p>Load packages needed</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KGRldnRvb2xzKVxubGlicmFyeShzaW5ldylcblxuYGBgIn0= -->
-<pre class="r"><code>
-library(devtools)
-library(sinew)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbImxpYnJhcnkoZGV2dG9vbHMpIiwibGlicmFyeShzaW5ldykiXX0= -->
+<pre class="r"><code>library(devtools)
+library(sinew)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Initialize a new package</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kZXZ0b29sczo6Y3JlYXRlKCd0ZXN0JylcbmtuaXRyOjpvcHRzX2tuaXQkc2V0KHJvb3QuZGlyID0gJ3Rlc3QnKVxuYGBgIn0= -->
-<pre class="r"><code>
-devtools::create('test')
+<!-- rnb-source-begin eyJkYXRhIjpbImRldnRvb2xzOjpjcmVhdGUoJ3Rlc3QnKSIsImtuaXRyOjpvcHRzX2tuaXQkc2V0KHJvb3QuZGlyID0gJ3Rlc3QnKSJdfQ== -->
+<pre class="r"><code>devtools::create('test')
 knitr::opts_knit$set(root.dir = 'test')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1723,20 +1720,21 @@ knitr::opts_knit$set(root.dir = 'test')</code></pre>
 <p>Add some basics: Package License and <code>data_raw</code> subdirectory</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kZXZ0b29sczo6dXNlX21pdF9saWNlbnNlKCd0ZXN0JylcbmRldnRvb2xzOjp1c2VfZGF0YV9yYXcoJ3Rlc3QnKVxuXG5gYGAifQ== -->
-<pre class="r"><code>
-devtools::use_mit_license('test')
-devtools::use_data_raw('test')
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbImRldnRvb2xzOjp1c2VfbWl0X2xpY2Vuc2UoJ3Rlc3QnKSIsImRldnRvb2xzOjp1c2VfZGF0YV9yYXcoJ3Rlc3QnKSJdfQ== -->
+<pre class="r"><code>devtools::use_mit_license('test')
+devtools::use_data_raw('test')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Write the toy functions to <code>data_raw/test.R</code></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIFxuY2F0KCcjc29tZSBjb21tZW50XG55eSA8LSBmdW5jdGlvbihhPTQpe1xuICBoZWFkKHJ1bmlmKDEwKSxhKVxuICAjIGEgY29tbWVudFxufVxuXG56eiA8LSBmdW5jdGlvbih2PTEwLGE9OCl7XG4gIGhlYWQocnVuaWYodiksYSlcbn1cblxueXkoNilcblxuenooMzAsMyknLHNlcD0nXFxuJyxmaWxlPSd0ZXN0L2RhdGEtcmF3L3Rlc3QuUicpIFxuXG5gYGAifQ== -->
-<pre class="r"><code> 
-cat('#some comment
+<!-- rnb-source-begin eyJkYXRhIjpbImNhdCgneHggPC0gZnVuY3Rpb24oZGF0YSl7IiwiICAgIG11dGF0ZShkYXRhLG1wZzIgPSBtcGdeMikiLCJ9IiwiIiwiI3NvbWUgY29tbWVudCIsInl5IDwtIGZ1bmN0aW9uKGE9NCl7IiwiICBoZWFkKHJ1bmlmKDEwKSxhKSIsIiAgIyBhIGNvbW1lbnQiLCJ9IiwiIiwienogPC0gZnVuY3Rpb24odj0xMCxhPTgpeyIsIiAgaGVhZChydW5pZih2KSxhKSIsIn0iLCIiLCJ5eSg2KSIsIiIsInp6KDMwLDMpIiwiIiwieHgoKSIsIicsc2VwPSdcXG4nLGZpbGU9J3Rlc3QvZGF0YS1yYXcvdGVzdC5SJykgIl19 -->
+<pre class="r"><code>cat('xx &lt;- function(data){
+    mutate(data,mpg2 = mpg^2)
+}
+
+#some comment
 yy &lt;- function(a=4){
   head(runif(10),a)
   # a comment
@@ -1748,8 +1746,10 @@ zz &lt;- function(v=10,a=8){
 
 yy(6)
 
-zz(30,3)',sep='\n',file='test/data-raw/test.R') 
-</code></pre>
+zz(30,3)
+
+xx()
+',sep='\n',file='test/data-raw/test.R') </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1776,7 +1776,7 @@ yy &lt;- function(a=4){
 <p>Split the <code>tests/data-raw/test.R</code> into single R files in the <code>test/R</code> subdirectory</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2luZXc6OnVudGFuZ2xlKGZpbGUgPSAndGVzdC9kYXRhLXJhdy90ZXN0LlInLGRpci5vdXQgPSAndGVzdC9SJyxrZWVwLmJvZHkgPSBGQUxTRSlcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoic2luZXc6OnVudGFuZ2xlKGZpbGUgPSAndGVzdC9kYXRhLXJhdy90ZXN0LlInLGRpci5vdXQgPSAndGVzdC9SJyxrZWVwLmJvZHkgPSBGQUxTRSkifQ== -->
 <pre class="r"><code>sinew::untangle(file = 'test/data-raw/test.R',dir.out = 'test/R',keep.body = FALSE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1784,12 +1784,10 @@ yy &lt;- function(a=4){
 <p>Append the appropriate namespaces to the functions</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5zaW5ldzo6cHJldHR5X25hbWVzcGFjZSgndGVzdC9SJylcblxuc2luZXc6OnByZXR0eV9uYW1lc3BhY2UoJ3Rlc3QvUicsb3ZlcndyaXRlID0gVFJVRSlcblxuYGBgIn0= -->
-<pre class="r"><code>
-sinew::pretty_namespace('test/R')
+<!-- rnb-source-begin eyJkYXRhIjpbInNpbmV3OjpwcmV0dHlfbmFtZXNwYWNlKGNvbiA9ICd0ZXN0L1IveHguUicpIiwiIiwic2luZXc6OnByZXR0eV9uYW1lc3BhY2UoY29uID0gJ3Rlc3QvUicsb3ZlcndyaXRlID0gVFJVRSkiXX0= -->
+<pre class="r"><code>sinew::pretty_namespace(con = 'test/R/xx.R')
 
-sinew::pretty_namespace('test/R',overwrite = TRUE)
-</code></pre>
+sinew::pretty_namespace(con = 'test/R',overwrite = TRUE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1797,26 +1795,22 @@ sinew::pretty_namespace('test/R',overwrite = TRUE)
 <p>And replace the placeholders with information.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5zaW5ldzo6bWFrZU94eUZpbGUoaW5wdXQgPSAndGVzdC9SL3l5LlInLG92ZXJ3cml0ZSA9IEZBTFNFKVxuXG5maWxlLnJlbW92ZSgndGVzdC9SL294eS15eS5SJylcblxuc2luZXc6Om1ha2VPeHlGaWxlKGlucHV0ID0gJ3Rlc3QvUicsb3ZlcndyaXRlID0gVFJVRSlcblxuYGBgIn0= -->
-<pre class="r"><code>
-sinew::makeOxyFile(input = 'test/R/yy.R',overwrite = FALSE)
+<!-- rnb-source-begin eyJkYXRhIjpbInNpbmV3OjptYWtlT3h5RmlsZShpbnB1dCA9ICd0ZXN0L1IveXkuUicsb3ZlcndyaXRlID0gRkFMU0UpIiwiIiwiZmlsZS5yZW1vdmUoJ3Rlc3QvUi9veHkteXkuUicpIiwiIiwic2luZXc6Om1ha2VPeHlGaWxlKGlucHV0ID0gJ3Rlc3QvUicsb3ZlcndyaXRlID0gVFJVRSkiXX0= -->
+<pre class="r"><code>sinew::makeOxyFile(input = 'test/R/yy.R',overwrite = FALSE)
 
 file.remove('test/R/oxy-yy.R')
 
-sinew::makeOxyFile(input = 'test/R',overwrite = TRUE)
-</code></pre>
+sinew::makeOxyFile(input = 'test/R',overwrite = TRUE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Append to the <code>DESCRIPTION</code> file the the <code>imports</code> field</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5zaW5ldzo6bWFrZUltcG9ydCgndGVzdC9SJyxmb3JtYXQgPSAnZGVzY3JpcHRpb24nLGRlc2NfbG9jID0gJ3Rlc3QnKVxuXG5yc3R1ZGlvYXBpOjpuYXZpZ2F0ZVRvRmlsZSgndGVzdC9ERVNDUklQVElPTicpXG5cbmBgYCJ9 -->
-<pre class="r"><code>
-sinew::makeImport('test/R',format = 'description',desc_loc = 'test')
+<!-- rnb-source-begin eyJkYXRhIjpbInNpbmV3OjptYWtlSW1wb3J0KCd0ZXN0L1InLGZvcm1hdCA9ICdkZXNjcmlwdGlvbicsZGVzY19sb2MgPSAndGVzdCcpIiwiIiwicnN0dWRpb2FwaTo6bmF2aWdhdGVUb0ZpbGUoJ3Rlc3QvREVTQ1JJUFRJT04nKSJdfQ== -->
+<pre class="r"><code>sinew::makeImport('test/R',format = 'description',desc_loc = 'test')
 
-rstudioapi::navigateToFile('test/DESCRIPTION')
-</code></pre>
+rstudioapi::navigateToFile('test/DESCRIPTION')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1838,68 +1832,85 @@ rstudioapi::navigateToFile('test/DESCRIPTION')
 <p>Now the roxygen2 header is not in synch with the function. Use <code>sinew::moga</code> to update the roxygen2 header with new formals and import fields. Make Oxygen Great Again (moga)</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5zaW5ldzo6bW9nYShwYXRoID0gJ3Rlc3QvUi95eS5yJyxvdmVyd3JpdGUgPSBGQUxTRSlcblxuc2luZXc6Om1vZ2EocGF0aCA9ICd0ZXN0L1IveXkucicsb3ZlcndyaXRlID0gRkFMU0UsZm9yY2UuZmllbGRzID0gJ3NlZWFsc28nKVxuXG5zaW5ldzo6bW9nYShwYXRoID0gJ3Rlc3QvUi95eS5yJyxvdmVyd3JpdGUgPSBUUlVFLGZvcmNlLmZpZWxkcyA9ICdzZWVhbHNvJylcblxuYGBgIn0= -->
-<pre class="r"><code>
-sinew::moga(path = 'test/R/yy.r',overwrite = FALSE)
+<!-- rnb-source-begin eyJkYXRhIjpbInNpbmV3Ojptb2dhKHBhdGggPSAndGVzdC9SL3l5LnInLG92ZXJ3cml0ZSA9IEZBTFNFKSIsIiIsInNpbmV3Ojptb2dhKHBhdGggPSAndGVzdC9SL3l5LnInLG92ZXJ3cml0ZSA9IEZBTFNFLGZvcmNlLmZpZWxkcyA9ICdzZWVhbHNvJykiLCIiLCJzaW5ldzo6bW9nYShwYXRoID0gJ3Rlc3QvUi95eS5yJyxvdmVyd3JpdGUgPSBUUlVFLGZvcmNlLmZpZWxkcyA9ICdzZWVhbHNvJykiXX0= -->
+<pre class="r"><code>sinew::moga(path = 'test/R/yy.r',overwrite = FALSE)
 
 sinew::moga(path = 'test/R/yy.r',overwrite = FALSE,force.fields = 'seealso')
 
-sinew::moga(path = 'test/R/yy.r',overwrite = TRUE,force.fields = 'seealso')
-</code></pre>
+sinew::moga(path = 'test/R/yy.r',overwrite = TRUE,force.fields = 'seealso')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Compile the roxygen2 headers into Rd files in <code>man</code> and update the <code>NAMESPACE</code> file</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kZXZ0b29sczo6ZG9jdW1lbnQocGtnID0gJ3Rlc3QnKVxuXG5gYGAifQ== -->
-<pre class="r"><code>
-devtools::document(pkg = 'test')
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiZGV2dG9vbHM6OmRvY3VtZW50KHBrZyA9ICd0ZXN0JykifQ== -->
+<pre class="r"><code>devtools::document(pkg = 'test')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Run <code>R CMD check --as-cran</code></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kZXZ0b29sczo6Y2hlY2socGtnID0gJ3Rlc3QnLGNyYW4gPSBUUlVFKVxuXG5gYGAifQ== -->
-<pre class="r"><code>
-devtools::check(pkg = 'test',cran = TRUE)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiZGV2dG9vbHM6OmNoZWNrKHBrZyA9ICd0ZXN0JyxjcmFuID0gVFJVRSkifQ== -->
+<pre class="r"><code>devtools::check(pkg = 'test',cran = TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>A problem that ussually arises when checking pacakges that use tidyverse is ‘undefined global functions’. To resolve this issue you need to use {rlang} functions.</p>
+<p>To make this an easy process we use {tidycheckUsage} which creates a tidy output of the portion of the R CMD check output that checks for the global variables, and lets you append the correct rlang functions to solve this issue.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjpbImxpYnJhcnkodGlkeWNoZWNrVXNhZ2UpIiwidGlkeWNoZWNrVXNhZ2VQYWNrYWdlKCd0ZXN0JykiLCIiLCJhcHBlbmRfcmxhbmdfcGFja2FnZSgndGVzdCcpIiwiIiwicnN0dWRpb2FwaTo6bmF2aWdhdGVUb0ZpbGUoJ3Rlc3QvUi94eC5SJykiLCIiLCIjIHJlZnJlc2ggdGhlIGRvY3VtZW50YXRpb24iLCJzaW5ldzo6bW9nYSgndGVzdC9SL3h4LlInLG92ZXJ3cml0ZSA9IFRSVUUpIiwic2luZXc6Om1ha2VJbXBvcnQoc2NyaXB0ID0gJ3Rlc3QvUicsZm9ybWF0ID0gJ2Rlc2NyaXB0aW9uJyxkZXNjX2xvYyA9ICd0ZXN0JykiLCIiLCJkZXZ0b29sczo6ZG9jdW1lbnQoJ3Rlc3QnKSIsIiIsIiMgcmVjaGVjayB0aGUgcGFja2FnZSIsImRldnRvb2xzOjpjaGVjaygndGVzdCcpIl19 -->
+<pre class="r"><code>library(tidycheckUsage)
+tidycheckUsagePackage('test')
+
+append_rlang_package('test')
+
+rstudioapi::navigateToFile('test/R/xx.R')
+
+# refresh the documentation
+sinew::moga('test/R/xx.R',overwrite = TRUE)
+sinew::makeImport(script = 'test/R',format = 'description',desc_loc = 'test')
+
+devtools::document('test')
+
+# recheck the package
+devtools::check('test')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Install the package, look at the documentation and run the functions.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kZXZ0b29sczo6aW5zdGFsbCgndGVzdCcpXG5cbmxpYnJhcnkodGVzdClcblxuP3Rlc3Q6Onl5XG5cbj90ZXN0Ojp6elxuXG50ZXN0Ojp5eSgpXG5cbnRlc3Q6Onp6KClcblxuYGBgIn0= -->
-<pre class="r"><code>
-devtools::install('test')
+<!-- rnb-source-begin eyJkYXRhIjpbImRldnRvb2xzOjppbnN0YWxsKCd0ZXN0JykiLCIiLCJsaWJyYXJ5KHRlc3QpIiwiIiwiP3Rlc3Q6Onh4IiwiIiwiP3Rlc3Q6Onl5IiwiIiwiP3Rlc3Q6Onp6IiwiIiwidGVzdDo6eHgobXRjYXJzKSIsIiIsInRlc3Q6Onl5KCkiLCIiLCJ0ZXN0Ojp6eigpIl19 -->
+<pre class="r"><code>devtools::install('test')
 
 library(test)
+
+?test::xx
 
 ?test::yy
 
 ?test::zz
 
+test::xx(mtcars)
+
 test::yy()
 
-test::zz()
-</code></pre>
+test::zz()</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Interactive sinew</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5yc3R1ZGlvYXBpOjpuYXZpZ2F0ZVRvRmlsZSgndGVzdC9SL3l5LlInKVxuXG5gYGAifQ== -->
-<pre class="r"><code>
-rstudioapi::navigateToFile('test/R/yy.R')
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoicnN0dWRpb2FwaTo6bmF2aWdhdGVUb0ZpbGUoJ3Rlc3QvUi95eS5SJykifQ== -->
+<pre class="r"><code>rstudioapi::navigateToFile('test/R/yy.R')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICBkZl9wcmludDogcGFnZWQKICBodG1sX25vdGVib29rOiBkZWZhdWx0CiAgcGRmX2RvY3VtZW50OiBkZWZhdWx0Ci0tLQoKU2V0dGluZyBnbG9iYWwgb3B0aW9ucyBmb3IgY2h1bmtzIGFuZCBrbml0cgoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSxldmFsID0gRkFMU0UpCmBgYAoKTG9hZCBwYWNrYWdlcyBuZWVkZWQKCmBgYHtyfQoKbGlicmFyeShkZXZ0b29scykKbGlicmFyeShzaW5ldykKCmBgYAogCkluaXRpYWxpemUgYSBuZXcgcGFja2FnZSAKIApgYGB7cn0KCmRldnRvb2xzOjpjcmVhdGUoJ3Rlc3QnKQprbml0cjo6b3B0c19rbml0JHNldChyb290LmRpciA9ICd0ZXN0JykKYGBgCiAKQWRkIHNvbWUgYmFzaWNzOiBQYWNrYWdlIExpY2Vuc2UgYW5kIGBkYXRhX3Jhd2Agc3ViZGlyZWN0b3J5IAogCmBgYHtyfQoKZGV2dG9vbHM6OnVzZV9taXRfbGljZW5zZSgndGVzdCcpCmRldnRvb2xzOjp1c2VfZGF0YV9yYXcoJ3Rlc3QnKQoKYGBgCgpXcml0ZSB0aGUgdG95IGZ1bmN0aW9ucyB0byBgZGF0YV9yYXcvdGVzdC5SYAoKYGBge3J9CiAKY2F0KCcjc29tZSBjb21tZW50Cnl5IDwtIGZ1bmN0aW9uKGE9NCl7CiAgaGVhZChydW5pZigxMCksYSkKICAjIGEgY29tbWVudAp9Cgp6eiA8LSBmdW5jdGlvbih2PTEwLGE9OCl7CiAgaGVhZChydW5pZih2KSxhKQp9Cgp5eSg2KQoKenooMzAsMyknLHNlcD0nXG4nLGZpbGU9J3Rlc3QvZGF0YS1yYXcvdGVzdC5SJykgCgpgYGAKCldoYXQgZG9lcyB0aGUgUlN0dWRpbyBza2VsZXRvbiBsb29rIGxpa2U/IAoKYFNoaWZ0K0FsdCtDbWQrUmAgKG1hY09TKQoKYGBge3IgUlN0dWRpbyBza2VsZXRvbiwgZXZhbD1GQUxTRX0KCiMnIFRpdGxlCiMnCiMnIEBwYXJhbSBhIAojJwojJyBAcmV0dXJuCiMnIEBleHBvcnQKIycKIycgQGV4YW1wbGVzCnl5IDwtIGZ1bmN0aW9uKGE9NCl7CiAgaGVhZChydW5pZigxMCksYSkKICAjIGEgY29tbWVudAp9CgpgYGAKClNwbGl0IHRoZSBgdGVzdHMvZGF0YS1yYXcvdGVzdC5SYCBpbnRvIHNpbmdsZSBSIGZpbGVzIGluIHRoZSBgdGVzdC9SYCBzdWJkaXJlY3RvcnkKCmBgYHtyfQpzaW5ldzo6dW50YW5nbGUoZmlsZSA9ICd0ZXN0L2RhdGEtcmF3L3Rlc3QuUicsZGlyLm91dCA9ICd0ZXN0L1InLGtlZXAuYm9keSA9IEZBTFNFKQpgYGAKIApBcHBlbmQgdGhlIGFwcHJvcHJpYXRlIG5hbWVzcGFjZXMgdG8gdGhlIGZ1bmN0aW9ucyAKIApgYGB7cn0KCnNpbmV3OjpwcmV0dHlfbmFtZXNwYWNlKCd0ZXN0L1InKQoKc2luZXc6OnByZXR0eV9uYW1lc3BhY2UoJ3Rlc3QvUicsb3ZlcndyaXRlID0gVFJVRSkKCmBgYAoKQ3JlYXRlIHNpbmV3IHJveHlnZW4yIHNrZWxldG9ucyBwb3B1bGF0ZWQgd2l0aCBpbmZvcm1hdGlvbiBmcm9tIHdpdGhpbiB0aGUgZnVuY3Rpb25zLiAKCkFuZCByZXBsYWNlIHRoZSBwbGFjZWhvbGRlcnMgd2l0aCBpbmZvcm1hdGlvbi4KCmBgYHtyfQoKc2luZXc6Om1ha2VPeHlGaWxlKGlucHV0ID0gJ3Rlc3QvUi95eS5SJyxvdmVyd3JpdGUgPSBGQUxTRSkKCmZpbGUucmVtb3ZlKCd0ZXN0L1Ivb3h5LXl5LlInKQoKc2luZXc6Om1ha2VPeHlGaWxlKGlucHV0ID0gJ3Rlc3QvUicsb3ZlcndyaXRlID0gVFJVRSkKCmBgYAoKQXBwZW5kIHRvIHRoZSBgREVTQ1JJUFRJT05gIGZpbGUgdGhlIHRoZSBgaW1wb3J0c2AgZmllbGQKCmBgYHtyIERFU0NSSVBUSU9OfQoKc2luZXc6Om1ha2VJbXBvcnQoJ3Rlc3QvUicsZm9ybWF0ID0gJ2Rlc2NyaXB0aW9uJyxkZXNjX2xvYyA9ICd0ZXN0JykKCnJzdHVkaW9hcGk6Om5hdmlnYXRlVG9GaWxlKCd0ZXN0L0RFU0NSSVBUSU9OJykKCmBgYAoKTG9va2luZyBiYWNrIGB5eWAgc2hvdWxkIGhhdmUgYSBzdW1tYXJ5IGZ1bmN0aW9uCgpgYGB7ciwgZXZhbD1GQUxTRX0KCnl5IDwtIGZ1bmN0aW9uKGE9NCxiPTIpewogIAogIHggPC0gdXRpbHM6OmhlYWQoc3RhdHM6OnJ1bmlmKDEwKmIpLGEpCiAgCiAgc3RhdHM6OnF1YW50aWxlKHgscHJvYnM9Ljk1KQogIAogICMgYSBjb21tZW50Cn0KCmBgYAoKTm93IHRoZSByb3h5Z2VuMiBoZWFkZXIgaXMgbm90IGluIHN5bmNoIHdpdGggdGhlIGZ1bmN0aW9uLiBVc2UgYHNpbmV3Ojptb2dhYCB0byB1cGRhdGUgdGhlIHJveHlnZW4yIGhlYWRlciB3aXRoIG5ldyBmb3JtYWxzIGFuZCBpbXBvcnQgZmllbGRzLiBNYWtlIE94eWdlbiBHcmVhdCBBZ2FpbiAobW9nYSkKCmBgYHtyIE1PR0F9CgpzaW5ldzo6bW9nYShwYXRoID0gJ3Rlc3QvUi95eS5yJyxvdmVyd3JpdGUgPSBGQUxTRSkKCnNpbmV3Ojptb2dhKHBhdGggPSAndGVzdC9SL3l5LnInLG92ZXJ3cml0ZSA9IEZBTFNFLGZvcmNlLmZpZWxkcyA9ICdzZWVhbHNvJykKCnNpbmV3Ojptb2dhKHBhdGggPSAndGVzdC9SL3l5LnInLG92ZXJ3cml0ZSA9IFRSVUUsZm9yY2UuZmllbGRzID0gJ3NlZWFsc28nKQoKYGBgCgpDb21waWxlIHRoZSByb3h5Z2VuMiBoZWFkZXJzIGludG8gUmQgZmlsZXMgaW4gYG1hbmAgYW5kIHVwZGF0ZSB0aGUgYE5BTUVTUEFDRWAgZmlsZQoKYGBge3IgT1hZR0VOSVpFfQoKZGV2dG9vbHM6OmRvY3VtZW50KHBrZyA9ICd0ZXN0JykKCmBgYAoKUnVuIGBSIENNRCBjaGVjayAtLWFzLWNyYW5gCgpgYGB7ciBDSEVDS30KCmRldnRvb2xzOjpjaGVjayhwa2cgPSAndGVzdCcsY3JhbiA9IFRSVUUpCgpgYGAKCkluc3RhbGwgdGhlIHBhY2thZ2UsIGxvb2sgYXQgdGhlIGRvY3VtZW50YXRpb24gYW5kIHJ1biB0aGUgZnVuY3Rpb25zLgoKYGBge3IgdGVzdCBmdW5jdGlvbnN9CgpkZXZ0b29sczo6aW5zdGFsbCgndGVzdCcpCgpsaWJyYXJ5KHRlc3QpCgo/dGVzdDo6eXkKCj90ZXN0Ojp6egoKdGVzdDo6eXkoKQoKdGVzdDo6enooKQoKYGBgCgpJbnRlcmFjdGl2ZSBzaW5ldwoKYGBge3IgaW50ZXJhY3RpdmV9Cgpyc3R1ZGlvYXBpOjpuYXZpZ2F0ZVRvRmlsZSgndGVzdC9SL3l5LlInKQoKYGBgCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICBkZl9wcmludDogcGFnZWQKICBodG1sX25vdGVib29rOiBkZWZhdWx0CiAgcGRmX2RvY3VtZW50OiBkZWZhdWx0Ci0tLQoKU2V0dGluZyBnbG9iYWwgb3B0aW9ucyBmb3IgY2h1bmtzIGFuZCBrbml0cgoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSxldmFsID0gRkFMU0UpCmBgYAoKTG9hZCBwYWNrYWdlcyBuZWVkZWQKCmBgYHtyfQoKbGlicmFyeShkZXZ0b29scykKbGlicmFyeShzaW5ldykKCmBgYAogCkluaXRpYWxpemUgYSBuZXcgcGFja2FnZSAKIApgYGB7cn0KCmRldnRvb2xzOjpjcmVhdGUoJ3Rlc3QnKQprbml0cjo6b3B0c19rbml0JHNldChyb290LmRpciA9ICd0ZXN0JykKYGBgCiAKQWRkIHNvbWUgYmFzaWNzOiBQYWNrYWdlIExpY2Vuc2UgYW5kIGBkYXRhX3Jhd2Agc3ViZGlyZWN0b3J5IAogCmBgYHtyfQoKZGV2dG9vbHM6OnVzZV9taXRfbGljZW5zZSgndGVzdCcpCmRldnRvb2xzOjp1c2VfZGF0YV9yYXcoJ3Rlc3QnKQoKYGBgCgpXcml0ZSB0aGUgdG95IGZ1bmN0aW9ucyB0byBgZGF0YV9yYXcvdGVzdC5SYAoKYGBge3J9CiAKY2F0KCd4eCA8LSBmdW5jdGlvbihkYXRhKXsKICAgIG11dGF0ZShkYXRhLG1wZzIgPSBtcGdeMikKfQoKI3NvbWUgY29tbWVudAp5eSA8LSBmdW5jdGlvbihhPTQpewogIGhlYWQocnVuaWYoMTApLGEpCiAgIyBhIGNvbW1lbnQKfQoKenogPC0gZnVuY3Rpb24odj0xMCxhPTgpewogIGhlYWQocnVuaWYodiksYSkKfQoKeXkoNikKCnp6KDMwLDMpCgp4eCgpCicsc2VwPSdcbicsZmlsZT0ndGVzdC9kYXRhLXJhdy90ZXN0LlInKSAKCmBgYAoKV2hhdCBkb2VzIHRoZSBSU3R1ZGlvIHNrZWxldG9uIGxvb2sgbGlrZT8gCgpgU2hpZnQrQWx0K0NtZCtSYCAobWFjT1MpCgpgYGB7ciBSU3R1ZGlvIHNrZWxldG9uLCBldmFsPUZBTFNFfQoKIycgVGl0bGUKIycKIycgQHBhcmFtIGEgCiMnCiMnIEByZXR1cm4KIycgQGV4cG9ydAojJwojJyBAZXhhbXBsZXMKeXkgPC0gZnVuY3Rpb24oYT00KXsKICBoZWFkKHJ1bmlmKDEwKSxhKQogICMgYSBjb21tZW50Cn0KCmBgYAoKU3BsaXQgdGhlIGB0ZXN0cy9kYXRhLXJhdy90ZXN0LlJgIGludG8gc2luZ2xlIFIgZmlsZXMgaW4gdGhlIGB0ZXN0L1JgIHN1YmRpcmVjdG9yeQoKYGBge3J9CnNpbmV3Ojp1bnRhbmdsZShmaWxlID0gJ3Rlc3QvZGF0YS1yYXcvdGVzdC5SJyxkaXIub3V0ID0gJ3Rlc3QvUicsa2VlcC5ib2R5ID0gRkFMU0UpCmBgYAogCkFwcGVuZCB0aGUgYXBwcm9wcmlhdGUgbmFtZXNwYWNlcyB0byB0aGUgZnVuY3Rpb25zIAogCmBgYHtyfQoKc2luZXc6OnByZXR0eV9uYW1lc3BhY2UoY29uID0gJ3Rlc3QvUi94eC5SJykKCnNpbmV3OjpwcmV0dHlfbmFtZXNwYWNlKGNvbiA9ICd0ZXN0L1InLG92ZXJ3cml0ZSA9IFRSVUUpCgpgYGAKCkNyZWF0ZSBzaW5ldyByb3h5Z2VuMiBza2VsZXRvbnMgcG9wdWxhdGVkIHdpdGggaW5mb3JtYXRpb24gZnJvbSB3aXRoaW4gdGhlIGZ1bmN0aW9ucy4gCgpBbmQgcmVwbGFjZSB0aGUgcGxhY2Vob2xkZXJzIHdpdGggaW5mb3JtYXRpb24uCgpgYGB7cn0KCnNpbmV3OjptYWtlT3h5RmlsZShpbnB1dCA9ICd0ZXN0L1IveXkuUicsb3ZlcndyaXRlID0gRkFMU0UpCgpmaWxlLnJlbW92ZSgndGVzdC9SL294eS15eS5SJykKCnNpbmV3OjptYWtlT3h5RmlsZShpbnB1dCA9ICd0ZXN0L1InLG92ZXJ3cml0ZSA9IFRSVUUpCgpgYGAKCkFwcGVuZCB0byB0aGUgYERFU0NSSVBUSU9OYCBmaWxlIHRoZSB0aGUgYGltcG9ydHNgIGZpZWxkCgpgYGB7ciBERVNDUklQVElPTn0KCnNpbmV3OjptYWtlSW1wb3J0KCd0ZXN0L1InLGZvcm1hdCA9ICdkZXNjcmlwdGlvbicsZGVzY19sb2MgPSAndGVzdCcpCgpyc3R1ZGlvYXBpOjpuYXZpZ2F0ZVRvRmlsZSgndGVzdC9ERVNDUklQVElPTicpCgpgYGAKCkxvb2tpbmcgYmFjayBgeXlgIHNob3VsZCBoYXZlIGEgc3VtbWFyeSBmdW5jdGlvbgoKYGBge3IsIGV2YWw9RkFMU0V9Cgp5eSA8LSBmdW5jdGlvbihhPTQsYj0yKXsKICAKICB4IDwtIHV0aWxzOjpoZWFkKHN0YXRzOjpydW5pZigxMCpiKSxhKQogIAogIHN0YXRzOjpxdWFudGlsZSh4LHByb2JzPS45NSkKICAKICAjIGEgY29tbWVudAp9CgpgYGAKCk5vdyB0aGUgcm94eWdlbjIgaGVhZGVyIGlzIG5vdCBpbiBzeW5jaCB3aXRoIHRoZSBmdW5jdGlvbi4gVXNlIGBzaW5ldzo6bW9nYWAgdG8gdXBkYXRlIHRoZSByb3h5Z2VuMiBoZWFkZXIgd2l0aCBuZXcgZm9ybWFscyBhbmQgaW1wb3J0IGZpZWxkcy4gTWFrZSBPeHlnZW4gR3JlYXQgQWdhaW4gKG1vZ2EpCgpgYGB7ciBNT0dBfQoKc2luZXc6Om1vZ2EocGF0aCA9ICd0ZXN0L1IveXkucicsb3ZlcndyaXRlID0gRkFMU0UpCgpzaW5ldzo6bW9nYShwYXRoID0gJ3Rlc3QvUi95eS5yJyxvdmVyd3JpdGUgPSBGQUxTRSxmb3JjZS5maWVsZHMgPSAnc2VlYWxzbycpCgpzaW5ldzo6bW9nYShwYXRoID0gJ3Rlc3QvUi95eS5yJyxvdmVyd3JpdGUgPSBUUlVFLGZvcmNlLmZpZWxkcyA9ICdzZWVhbHNvJykKCmBgYAoKQ29tcGlsZSB0aGUgcm94eWdlbjIgaGVhZGVycyBpbnRvIFJkIGZpbGVzIGluIGBtYW5gIGFuZCB1cGRhdGUgdGhlIGBOQU1FU1BBQ0VgIGZpbGUKCmBgYHtyIE9YWUdFTklaRX0KCmRldnRvb2xzOjpkb2N1bWVudChwa2cgPSAndGVzdCcpCgpgYGAKClJ1biBgUiBDTUQgY2hlY2sgLS1hcy1jcmFuYAoKYGBge3IgQ0hFQ0t9CgpkZXZ0b29sczo6Y2hlY2socGtnID0gJ3Rlc3QnLGNyYW4gPSBUUlVFKQoKYGBgCgpBIHByb2JsZW0gdGhhdCB1c3N1YWxseSBhcmlzZXMgd2hlbiBjaGVja2luZyBwYWNha2dlcyB0aGF0IHVzZSB0aWR5dmVyc2UgaXMgJ3VuZGVmaW5lZCBnbG9iYWwgZnVuY3Rpb25zJy4gVG8gcmVzb2x2ZSB0aGlzIGlzc3VlIHlvdSBuZWVkIHRvIHVzZSB7cmxhbmd9IGZ1bmN0aW9ucy4gCgpUbyBtYWtlIHRoaXMgYW4gZWFzeSBwcm9jZXNzIHdlIHVzZSB7dGlkeWNoZWNrVXNhZ2V9IHdoaWNoIGNyZWF0ZXMgYSB0aWR5IG91dHB1dCBvZiB0aGUgcG9ydGlvbiBvZiB0aGUgUiBDTUQgY2hlY2sgb3V0cHV0IHRoYXQgY2hlY2tzIGZvciB0aGUgZ2xvYmFsIHZhcmlhYmxlcywgYW5kIGxldHMgeW91IGFwcGVuZCB0aGUgY29ycmVjdCBybGFuZyBmdW5jdGlvbnMgdG8gc29sdmUgdGhpcyBpc3N1ZS4gCgpgYGB7cn0KbGlicmFyeSh0aWR5Y2hlY2tVc2FnZSkKdGlkeWNoZWNrVXNhZ2VQYWNrYWdlKCd0ZXN0JykKCmFwcGVuZF9ybGFuZ19wYWNrYWdlKCd0ZXN0JykKCnJzdHVkaW9hcGk6Om5hdmlnYXRlVG9GaWxlKCd0ZXN0L1IveHguUicpCgojIHJlZnJlc2ggdGhlIGRvY3VtZW50YXRpb24Kc2luZXc6Om1vZ2EoJ3Rlc3QvUi94eC5SJyxvdmVyd3JpdGUgPSBUUlVFKQpzaW5ldzo6bWFrZUltcG9ydChzY3JpcHQgPSAndGVzdC9SJyxmb3JtYXQgPSAnZGVzY3JpcHRpb24nLGRlc2NfbG9jID0gJ3Rlc3QnKQoKZGV2dG9vbHM6OmRvY3VtZW50KCd0ZXN0JykKCiMgcmVjaGVjayB0aGUgcGFja2FnZQpkZXZ0b29sczo6Y2hlY2soJ3Rlc3QnKQoKYGBgCgpJbnN0YWxsIHRoZSBwYWNrYWdlLCBsb29rIGF0IHRoZSBkb2N1bWVudGF0aW9uIGFuZCBydW4gdGhlIGZ1bmN0aW9ucy4KCmBgYHtyIHRlc3QgZnVuY3Rpb25zfQoKZGV2dG9vbHM6Omluc3RhbGwoJ3Rlc3QnKQoKbGlicmFyeSh0ZXN0KQoKP3Rlc3Q6Onh4Cgo/dGVzdDo6eXkKCj90ZXN0Ojp6egoKdGVzdDo6eHgobXRjYXJzKQoKdGVzdDo6eXkoKQoKdGVzdDo6enooKQoKYGBgCgpJbnRlcmFjdGl2ZSBzaW5ldwoKYGBge3IgaW50ZXJhY3RpdmV9Cgpyc3R1ZGlvYXBpOjpuYXZpZ2F0ZVRvRmlsZSgndGVzdC9SL3l5LlInKQoKYGBgCg==</div>
 
 
 
