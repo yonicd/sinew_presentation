@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Simple and Reliable R Package Documentation with Sinew</title>
+  <title>Reliable R Package Documentation</title>
     
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -749,7 +749,7 @@ hljs.initHighlightingOnLoad();
   <div class="slides">
 
 <section data-state="section" data-transition="linear" data-transition-speed="default">
-<h1>Simple and Reliable R Package Documentation with Sinew</h1><p>Jonathan Sidi<br/>2018-05-26</p>
+<h1>Reliable R Package Documentation</h1><p>Jonathan Sidi<br/>2018-05-28</p>
 
 <div class="slideContent" >
 
@@ -757,17 +757,20 @@ hljs.initHighlightingOnLoad();
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Whoami</h3>
+<h3>$whoami</h3>
 <div class="slideContent" >
-<p>Jonathan Sidi - <a href="http://metrumrg.com/">Metrum Research Group</a></p>
+<p>Jonathan Sidi</p>
 
 <ul>
-<li>Research Scientist at Metrum Research Group
+<li>Research Scientist at <a href="http://metrumrg.com/">Metrum Research Group</a>
 
 <ul>
 <li>Biomedical Modeling and Simulation</li>
 </ul></li>
-<li>Stats Phd Student at the Hebrew University in Jerusalem</li>
+<li>Statistics Graduate Student at HUJI</li>
+<li>Blog: <a href="https://yonicd.netlify.com/">https://yonicd.netlify.com/</a></li>
+<li>Twitter: <a href="https://twitter.com/yoniceedee">@yoniceedee</a></li>
+<li>Facebook: hard pass</li>
 </ul>
 
 </div>
@@ -793,7 +796,7 @@ hljs.initHighlightingOnLoad();
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Structure</h3>
+<h3>Portable Structure</h3>
 <div class="slideContent" >
 <ul>
 <li><strong>DESCRIPTION</strong> : Package Metadata</li>
@@ -808,20 +811,20 @@ hljs.initHighlightingOnLoad();
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Roxygen2</h3>
+<h3>{roxygen2}</h3>
 <div class="slideContent" >
-<p><a href="https://github.com/klutometis/roxygen">Roxygen2</a> is a R package that creates an easy api to maintain the documentation for each function and the package namespace. </p>
+<p>Popular <code>R</code> package that has an easy API to maintain the documentation for each function and the package namespace. </p>
 
 <ul>
-<li>You do not have to manually write the Rd files that are needed to populate the man subdirectory.
+<li><strong>You do not have to manually maintain</strong> the Rd files that are needed to populate the <code>man</code> subdirectory.
 
 <ul>
 <li>The documentation is in the same place as the object that it is describing.</li>
 </ul></li>
-<li>You do not have to manually maintain the NAMESPACE file.
+<li><strong>You do not have to manually maintain</strong> the NAMESPACE file.
 
 <ul>
-<li>Namespacing for the object is part of the documentation.</li>
+<li>Namespacing for the object is compiled as part of the documentation.</li>
 </ul></li>
 </ul>
 
@@ -834,17 +837,17 @@ hljs.initHighlightingOnLoad();
 <p>This is great, but is still a pretty high bar to pass for a non-expert developers.</p>
 
 <ul>
-<li>You have to understand and track what are the <code>depends</code>, <code>imports</code> and <code>suggests</code> of the package.
+<li><strong>You have to</strong> understand and track what are the <code>depends</code>, <code>imports</code> and <code>suggests</code> of the package.
 
 <ul>
 <li><code>@import</code> and  <code>@importFrom</code></li>
 </ul></li>
-<li>You have to keep a consistent documentation layout across functions.
+<li><strong>You have to</strong> keep a consistent documentation layout across functions.
 
 <ul>
 <li><code>@params</code>, <code>@examples</code></li>
 </ul></li>
-<li>You have to manage links across packages
+<li><strong>You have to</strong> manage links across packages
 
 <ul>
 <li><code>@seealso</code></li>
@@ -865,10 +868,15 @@ hljs.initHighlightingOnLoad();
 <ul>
 <li>e.g. using another package, add a formal argument</li>
 </ul></li>
-<li><p>You need to update the <code>Roxygen2</code> documentation</p>
+<li><p>You need to update the {roxygen2} documentation</p>
 
 <ul>
 <li>update <code>@params</code>, <code>@imports</code>, <code>@importFrom</code></li>
+</ul></li>
+<li><p>Next level</p>
+
+<ul>
+<li>manage quosures with tidyverse packages</li>
 </ul></li>
 </ul>
 
@@ -876,18 +884,18 @@ hljs.initHighlightingOnLoad();
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Sinew</h3>
+<h3>{sinew}</h3>
 <div class="slideContent" >
 <ul>
-<li><p>Sinew is a package that progrmatically populates roxygen2 fields with inoformation found within the function you are documenting. </p></li>
-<li><p>Allowing the developer to focus on the development and not on the continuous managment of the namespacing and mundane manual documentation tasks.</p></li>
+<li><p>{sinew} is a package that progrmatically populates {roxygen2} fields with information found within the function you are documenting. </p></li>
+<li><p>Allowing the developer to focus on the development and not on the continuous managment of the namespacing and mundane manual documentation tasks.</p>
+
+<ul>
+<li>CRAN: <a href="https://cran.r-project.org/web/packages/sinew/index.html">https://cran.r-project.org/web/packages/sinew/index.html</a></li>
+<li>Github: <a href="https://www.github.com/metrumresearchgroup/sinew">https://www.github.com/metrumresearchgroup/sinew</a></li>
+<li>Gitbook: <a href="https://metrumresearchgroup.github.io/sinew/">https://metrumresearchgroup.github.io/sinew/</a></li>
+</ul></li>
 </ul>
-
-<p>CRAN: <a href="https://cran.r-project.org/web/packages/sinew/index.html">https://cran.r-project.org/web/packages/sinew/index.html</a></p>
-
-<p>Github Repository: <a href="https://www.github.com/metrumresearchgroup/sinew">https://www.github.com/metrumresearchgroup/sinew</a></p>
-
-<p>Gitbook: <a href="https://metrumresearchgroup.github.io/sinew/">https://metrumresearchgroup.github.io/sinew/</a></p>
 
 </div>
 
@@ -895,8 +903,6 @@ hljs.initHighlightingOnLoad();
 <section data-transition="linear" data-transition-speed="default">
 <h3>Package Goal</h3>
 <div class="slideContent" >
-<p>The goal of <code>{sinew}</code> is to </p>
-
 <ul>
 <li>automate nearly all of the manual tasks needed to document functions</li>
 <li>properly set up the import fields for oxygenation</li>
@@ -908,11 +914,55 @@ hljs.initHighlightingOnLoad();
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Sinew Workflow Example</h3>
+<h3>Next Level</h3>
 <div class="slideContent" >
-<p>In the following example we will create a fully functional package with valid namespacing and documentation that passes <code>R CMD check --as-cran</code> using <code>{sinew}</code> in 10 minutes. </p>
+<p>When your package imports tidyverse packages it adds a new level of development stress&hellip; <strong>Managing Quosures</strong></p>
 
-<p>Time permitting we will see the interactive shiny gadget of <code>{sinew}</code></p>
+<p>You probably have seen this&hellip;</p>
+
+<pre><code class="r">* checking R code for possible problems ... NOTE
+xx: no visible binding for global variable ‘mpg’
+Undefined global functions or variables:
+  mpg
+
+R CMD check results
+0 errors | 0 warnings | 1 note 
+</code></pre>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>{tidycheckUsage}</h3>
+<div class="slideContent" >
+<ul>
+<li><p>This small utility package runs the same functions that <code>devtools::check()</code> to check for problems in variable usage and returns a <code>data_frame</code> containing all the warnings, ready for package introspection.</p></li>
+<li><p>Github: <a href="https://www.github.com/yonicd/tidycheckUsage">https://www.github.com/yonicd/tidycheckUsage</a></p>
+
+<ul>
+<li>Proactive methods append {rlang} syntax to resolve the warnings.</li>
+<li>Great for package development/maintenance and to teach correct syntax usage in small examples.</li>
+</ul></li>
+</ul>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Workflow Example</h3>
+<div class="slideContent" >
+<ul>
+<li>In the following 10 minute example we will create a fully functional <code>R</code> package with valid namespacing and documentation that will result in</li>
+</ul>
+
+<pre><code class="r">R CMD check --as-cran
+
+0 errors | 0 warnings | 0 notes
+</code></pre>
+
+<ul>
+<li>Time permitting we will see the interactive capabilities of the packages.</li>
+</ul>
 
 <p>Moving to Rmd&hellip;. </p>
 

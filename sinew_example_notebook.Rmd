@@ -13,16 +13,17 @@ Setting global options for chunks and knitr
 knitr::opts_chunk$set(echo = TRUE,eval = FALSE)
 ```
 
-Load packages needed
+# Load packages needed
 
 ```{r}
 
 library(devtools)
 library(sinew)
+library(tidycheckUsage)
 
 ```
  
-Initialize a new package 
+# Initialize a new package 
  
 ```{r}
 
@@ -30,7 +31,9 @@ devtools::create('test')
 knitr::opts_knit$set(root.dir = 'test')
 ```
  
-Add some basics: Package License and `data_raw` subdirectory 
+## Add some basics
+
+Package License and `data_raw` subdirectory 
  
 ```{r}
 
@@ -38,6 +41,8 @@ devtools::use_mit_license('test')
 devtools::use_data_raw('test')
 
 ```
+
+# Toy Function
 
 Write the toy functions to `data_raw/test.R`
 
@@ -66,6 +71,8 @@ xx()
 
 ```
 
+# Rstudio Documentation Skeleton
+
 What does the RStudio skeleton look like? 
 
 `Shift+Alt+Cmd+R` (macOS)
@@ -87,21 +94,27 @@ yy <- function(a=4){
 
 ```
 
+# Untangling
+
 Split the `tests/data-raw/test.R` into single R files in the `test/R` subdirectory
 
 ```{r}
 sinew::untangle(file = 'test/data-raw/test.R',dir.out = 'test/R',keep.body = FALSE)
 ```
- 
+
+# Appening Namespaces
+
 Append the appropriate namespaces to the functions 
  
 ```{r}
 
-sinew::pretty_namespace(con = 'test/R/xx.R')
+sinew::pretty_namespace(con = 'test/R/yy.R')
 
 sinew::pretty_namespace(con = 'test/R',overwrite = TRUE)
 
 ```
+
+# Create Sinew Documentation
 
 Create sinew roxygen2 skeletons populated with information from within the functions. 
 
@@ -116,6 +129,8 @@ file.remove('test/R/oxy-yy.R')
 sinew::makeOxyFile(input = 'test/R',overwrite = TRUE)
 
 ```
+
+# Update DESCRIPTION file
 
 Append to the `DESCRIPTION` file the the `imports` field
 
@@ -162,7 +177,7 @@ devtools::document(pkg = 'test')
 
 ```
 
-Run `R CMD check --as-cran`
+# Run `R CMD check --as-cran`
 
 ```{r CHECK}
 
@@ -170,15 +185,16 @@ devtools::check(pkg = 'test',cran = TRUE)
 
 ```
 
+# Check Warnings
+
 A problem that ussually arises when checking pacakges that use tidyverse is 'undefined global functions'. To resolve this issue you need to use {rlang} functions. 
 
 To make this an easy process we use {tidycheckUsage} which creates a tidy output of the portion of the R CMD check output that checks for the global variables, and lets you append the correct rlang functions to solve this issue. 
 
 ```{r}
-library(tidycheckUsage)
-tidycheckUsagePackage('test')
+(obj <- tidycheckUsagePackage('test'))
 
-append_rlang_package('test')
+append_rlang(obj)
 
 rstudioapi::navigateToFile('test/R/xx.R')
 
@@ -192,6 +208,8 @@ devtools::document('test')
 devtools::check('test')
 
 ```
+
+# Install and Test Package
 
 Install the package, look at the documentation and run the functions.
 
